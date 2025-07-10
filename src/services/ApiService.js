@@ -1,27 +1,35 @@
-const BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/v1`;
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
+  "https://mt-server-eta.vercel.app";
+const BASE_URL = `${API_BASE_URL}/api/v1`;
 
-// Function to handle GET requests
+/**
+ * Utility to join URL parts and remove duplicate slashes
+ */
+function buildUrl(endpoint) {
+  return `${BASE_URL}/${endpoint}`.replace(/([^:]\/)\/+/g, "$1");
+}
+
 async function getApi(endpoint) {
-  const url = `${BASE_URL}/${endpoint}`;
+  const url = buildUrl(endpoint);
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      credentials: "include", // if your backend uses cookies for auth
+    });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`GET ${url} failed: ${response.status}`);
     }
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
   }
 }
 
-// Function to handle POST requests
 async function postApi(endpoint, body, isMultipart = false) {
-  const url = `${BASE_URL}/${endpoint}`;
+  const url = buildUrl(endpoint);
   const headers = {};
 
-  // Only set Content-Type for non-multipart data
   if (!isMultipart) {
     headers["Content-Type"] = "application/json";
   }
@@ -29,56 +37,61 @@ async function postApi(endpoint, body, isMultipart = false) {
   try {
     const response = await fetch(url, {
       method: "POST",
+      credentials: "include",
       headers,
       body: isMultipart ? body : JSON.stringify(body),
     });
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`POST ${url} failed: ${response.status}`);
     }
 
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error("Error posting data:", error.message);
-    throw new Error(error);
+    console.error("Error posting data:", error);
+    throw error;
   }
 }
 
 async function delApi(endpoint) {
-  const url = `${BASE_URL}/${endpoint}`;
+  const url = buildUrl(endpoint);
   try {
     const response = await fetch(url, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`DELETE ${url} failed: ${response.status}`);
     }
-    const data = await response.json();
-    return data;
+
+    return await response.json();
   } catch (error) {
-    console.error("Error deleting data:", error.message);
-    throw new Error(error);
+    console.error("Error deleting data:", error);
+    throw error;
   }
 }
+
 async function postFile(endpoint, body) {
-  const url = `${BASE_URL}/${endpoint}`;
+  const url = buildUrl(endpoint);
   try {
     const response = await fetch(url, {
       method: "POST",
+      credentials: "include",
       body,
     });
+
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`POST file ${url} failed: ${response.status}`);
     }
-    const data = await response.json();
-    return data;
+
+    return await response.json();
   } catch (error) {
-    console.error("Error posting data:", error.message);
-    throw new Error(error);
+    console.error("Error posting file:", error);
+    throw error;
   }
 }
 
