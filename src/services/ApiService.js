@@ -3,9 +3,6 @@ const API_BASE_URL =
   "https://mt-server-eta.vercel.app";
 const BASE_URL = `${API_BASE_URL}/api/v1`;
 
-/**
- * Utility to join URL parts and remove duplicate slashes
- */
 function buildUrl(endpoint) {
   return `${BASE_URL}/${endpoint}`.replace(/([^:]\/)\/+/g, "$1");
 }
@@ -21,7 +18,7 @@ async function getApi(endpoint) {
     }
     return await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("❌ GET Error:", error);
     throw error;
   }
 }
@@ -48,7 +45,7 @@ async function postApi(endpoint, body, isMultipart = false) {
 
     return await response.json();
   } catch (error) {
-    console.error("Error posting data:", error);
+    console.error("❌ POST Error:", error);
     throw error;
   }
 }
@@ -70,7 +67,7 @@ async function delApi(endpoint) {
 
     return await response.json();
   } catch (error) {
-    console.error("Error deleting data:", error);
+    console.error("❌ DELETE Error:", error);
     throw error;
   }
 }
@@ -90,7 +87,7 @@ async function postFile(endpoint, body) {
 
     return await response.json();
   } catch (error) {
-    console.error("Error posting file:", error);
+    console.error("❌ File POST Error:", error);
     throw error;
   }
 }
