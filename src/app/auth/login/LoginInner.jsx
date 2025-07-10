@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-const Login = () => {
+const LoginInner = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
@@ -154,4 +154,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginInner;
