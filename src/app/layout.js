@@ -2,7 +2,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Layout from "../components/layout";
 import { ConfigProvider } from "antd";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
 import ReduxProvider from "./ReduxProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -30,25 +29,22 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <AntdRegistry>
-            <ConfigProvider
-              theme={{
-                components: {
-                  Menu: {
-                    itemSelectedBg: "#111",
-                    itemSelectedColor: "#0093A7",
-                    itemColor: "#FFFFFFBF",
-                    itemHoverColor: "#FFFFFFBF",
-                    itemActiveBg: "#111",
-                  },
+          <ConfigProvider
+            theme={{
+              components: {
+                Menu: {
+                  itemSelectedBg: "#111",
+                  itemSelectedColor: "#0093A7",
+                  itemColor: "#FFFFFFBF",
+                  itemHoverColor: "#FFFFFFBF",
+                  itemActiveBg: "#111",
                 },
-              }}
-            >
-              {/* ToastContainer added here for global accessibility */}
-              <ToastContainer position="top-right" autoClose={3000} />
-              <Layout>{children}</Layout>
-            </ConfigProvider>
-          </AntdRegistry>
+              },
+            }}
+          >
+            <ToastContainer position="top-right" autoClose={3000} />
+            <Layout>{children}</Layout>
+          </ConfigProvider>
         </ReduxProvider>
       </body>
     </html>
