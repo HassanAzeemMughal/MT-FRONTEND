@@ -7,7 +7,9 @@ const BASE_URL = `${API_BASE_URL}/api/v1`;
  * Utility to join URL parts and remove duplicate slashes
  */
 function buildUrl(endpoint) {
-  return `${BASE_URL}/${endpoint}`.replace(/([^:]\/)\/+/g, "$1");
+  // remove any leading slash from endpoint
+  const cleanEndpoint = endpoint.replace(/^\/+/, "");
+  return `${BASE_URL}/${cleanEndpoint}`.replace(/([^:]\/)\/+/g, "$1");
 }
 
 async function getApi(endpoint) {
