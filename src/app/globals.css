@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+/* Carousel Previous & Next icon styling */
+.ant-carousel .slick-prev::after {
+  box-sizing: border-box;
+  position: absolute;
+  top: 2.3431457505076203px;
+  inset-inline-start: 2.3431457505076203px;
+  display: inline-block;
+  width: 11.313708px !important;
+  height: 11.313708px !important;
+  border: 0 solid currentcolor;
+  border-inline-width: 2px 0;
+  border-block-width: 2px 0;
+  border-radius: 1px;
+  color: white !important;
+}
+
+.ant-carousel .slick-next::after {
+  box-sizing: border-box;
+  position: absolute;
+  top: 2.3431457505076203px;
+  inset-inline-start: 2.3431457505076203px;
+  display: inline-block;
+  width: 11.313708px !important;
+  height: 11.313708px !important;
+  border: 0 solid currentcolor;
+  border-inline-width: 2px 0;
+  border-block-width: 2px 0;
+  border-radius: 1px;
+  color: white !important;
+}
+/* Carousel Previous & Next icon styling */
+/* Star Animation */
+.star-animation {
+  position: absolute; /* Allow positioning within the parent div */
+  top: -20px; /* Start just above the top */
+  animation: fall linear forwards; /* Apply the fall animation */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0); /* Start from the top */
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    transform: translateY(100vh); /* Move to the bottom */
+    opacity: 0; /* Fade out as it falls */
+  }
+}
+/* Star Animation */
+
+/* width */
+.left_sidebar_scrolling {
+  margin-right: 8px !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  border-radius: 10px !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e14334;
+  border-radius: 10px !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: red !important;
+}
+
+/* Start Google Translate Branding Hide Code */
+/* Hide Google Translate Branding */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.goog-logo-link,
+.goog-te-gadget span,
+.goog-te-gadget-simple .goog-te-menu-value span:first-child {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+.goog-te-gadget select {
+  font-size: 14px !important;
+  padding: 5px !important;
+  border: 1px solid black;
+}
+
+/* Hide Powered by Google text */
+.goog-te-gadget img {
+  display: none !important;
+}
+#google_translate_element {
+  margin-right: 20px !important;
+}
+
+/* Hide Google Translate Top Bar */
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+/* Ensure iframe is hidden properly */
+iframe.skiptranslate {
+  display: none !important;
+}
+/* End Google Translate Branding Hide Code */
